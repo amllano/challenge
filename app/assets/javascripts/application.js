@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+
+window.App = window.App || {} 
+
+App.init = function () {
+};
+
+$(document).on("turbolinks:load", function () {
+  App.init()
+});
