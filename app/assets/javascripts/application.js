@@ -16,12 +16,46 @@
 
 window.App = window.App || {} 
 
-
-App.updateBoard = function (player) {
+App.enableFireForm = function () {
 	// Show turn info 
 	$('#player-turn').html("<small>Your Turn</small>");				
 	// Enable form
-	$("#guess_form :input").attr("disabled", false);						
+	$("#guess_form :input").attr("disabled", false);
+}
+
+// Update Guesses grid
+App.updateGuessesGrid = function (guesses) {
+	guesses.forEach(function (guess)  {
+		$('#guessY_'+ guess.y + ' > #guessX_' + guess.x).html(
+			guess.status === "hit"? "X" : "0"
+		);
+	});
+};
+
+// Update Ships grid
+App.updateShipsGrid = function (guesses) {
+	guesses.forEach(function (guess)  {
+		$('#shipY_'+ guess.y + ' > #shipX_' + guess.x).html(
+			guess.status === "hit"? "X" : "0"
+		);
+	});
+};
+
+App.updateBoard = function (player) {
+	$.ajax({
+		url: "/games/"+player, 
+		dataType: "json"
+	}).done (function (data) {
+		console.log(data);
+
+		App.enableFireForm();
+		App.updateGuessesGrid(data.guesses);
+		App.updateShipsGrid(data.opponentGuesses);
+
+		if (data.status == "game over") {
+			alert ("Game Over!");
+		}
+	});
 };
 
 // Checks if is user current turn using short polling.
