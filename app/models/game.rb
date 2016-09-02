@@ -5,16 +5,15 @@ class Game < ApplicationRecord
 
   # calculate game status
   def update_status (guesses)
- 		game_over = true
- 		self.ships do |ship|
+ 		_game_over = true
+
+ 		self.ships.each do |ship|
  			ship.update_status(guesses)
  			ship.save
  			
- 			game_over &&= ship.status == "sunk"
+ 			_game_over &&= ship.status == "sunk"
  		end
 
- 		if (game_over) 
- 			self.status = "game over"
- 		end
+ 		self.status = _game_over ? "game over" : "playing" 
  	end
 end
