@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'home/index'
 
-  resources :games
+  resources :games do 
+  	resources :guesses
+  end
+
   
   root "home#index"
 end
