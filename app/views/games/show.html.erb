@@ -1,0 +1,16 @@
+<h1 class="page-header">Player <%= @game.player %> | <span id="player-turn"><%= render 'turn', :turn => @game.turn %></span></h1>
+
+<div class="row">
+	<div class="col-sm-4">
+		<h2>My Ships</h2>
+		<div id="ships">			
+			<%= render 'ships' %>
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<h2>Enemy</h2>	
+		<div id="guesses">
+			<%= render 'guesses' %>
+		</div>
+	</div>
+</div>
