@@ -4,3 +4,5 @@ $('#ships').html("<%= j (render 'games/ships') %>");
 $('#player-turn').html("<%= j (render 'games/turn', :turn => false) %>");
 
 $("#guess_form :input").attr("disabled", true);
+
+window.App.checkTurn(<%= @game.id %>)
