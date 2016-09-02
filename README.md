@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Code challenge: Battleship
 
-Things you may want to cover:
+## Code Status
 
-* Ruby version
+[![Build Status](https://travis-ci.org/amllano/challenge.svg?branch=master)](https://travis-ci.org/amllano/challenge)
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
