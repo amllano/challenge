@@ -11,9 +11,11 @@
 		<% (1..10).each do |y| %>
 			<tr>
 				<td><%= y %></td>
-				<% (1..10).each do |x| %>					
-					<td></td>
-				<% end %>
+				<% (1..10).each do |x| %>
+					<% @ship = find_ship(x, y, @game.ships) %>
+					<td class="text-center <%=  @ship? ship_name_bg_class(@ship.name): '' %>">
+					</td>
+				<% end %>			
 			</tr>
 		<% end %>
 	</tbody>
