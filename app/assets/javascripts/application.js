@@ -16,7 +16,44 @@
 
 window.App = window.App || {} 
 
+
+App.updateBoard = function (player) {
+	// Show turn info 
+	$('#player-turn').html("<small>Your Turn</small>");				
+	// Enable form
+	$("#guess_form :input").attr("disabled", false);						
+};
+
+// Checks if is user current turn using short polling.
+// if is user current turns it calls to App.updateboard.
+App.checkTurn = function (player) {
+	var isMyTurn;
+	var interval = setInterval(function () {
+		$.ajax({ 
+			url: "/games/"+player+"/turn",
+			dataType: "json"
+		}).done(function (data) {
+			if (data.turn) {
+				// It's my turn! clear the setInterval
+				clearInterval(interval);
+				// Update board: turn info, and grids.
+				console.log('Turn to sink enemy ships!');
+				
+				App.updateBoard(player);
+			} else {
+				console.log('not my turn :(');
+			}
+		});
+	}, 5000);
+};
+
 App.init = function () {
+	// Execute the following stment only if current view is "game#show": 
+	var $sel = $('.games.show');
+	if ($sel.length > 0) {
+		// Check for turn changes.
+		App.checkTurn($sel.data('game_id'));
+	}
 };
 
 $(document).on("turbolinks:load", function () {
