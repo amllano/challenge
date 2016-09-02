@@ -1,0 +1,6 @@
+$('#guesses').html("<%= j (render 'games/guesses') %>");
+$('#ships').html("<%= j (render 'games/ships') %>");
+
+$('#player-turn').html("<%= j (render 'games/turn', :turn => false) %>");
+
+$("#guess_form :input").attr("disabled", true);

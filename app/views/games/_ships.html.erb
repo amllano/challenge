@@ -14,6 +14,10 @@
 				<% (1..10).each do |x| %>
 					<% @ship = find_ship(x, y, @game.ships) %>
 					<td class="text-center <%=  @ship? ship_name_bg_class(@ship.name): '' %>">
+						<% @guess = find_guess(x, y, @opponent.guesses) %>
+						<% if @guess %>
+						 	<%= hit_or_miss(@guess.status) %>
+						<% end %>						
 					</td>
 				<% end %>			
 			</tr>

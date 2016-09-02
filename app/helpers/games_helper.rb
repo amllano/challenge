@@ -33,4 +33,23 @@ module GamesHelper
 			return "bg bg-danger"
 		end
 	end
+
+	# Returns guess object from coordinate (or nil)
+	def find_guess (x, y, guesses)
+		_has_guessed = false
+		guesses.each do |guess|
+			_has_guessed = (guess.x === x) && (guess.y === y)
+
+			if (_has_guessed) 
+				return guess
+			end
+		end
+
+		nil		
+	end	
+
+	# Returns true if there is a ship at the given coordinate (x, y); false in other case
+	def hit_or_miss (guess)
+		guess === "hit"? "X" : "0";
+	end
 end

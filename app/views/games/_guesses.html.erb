@@ -12,7 +12,12 @@
 			<tr>
 				<td><%= y %></td>
 				<% (1..10).each do |x| %>					
-					<td></td>
+					<% @guess = find_guess(x, y, @game.guesses) %>
+					<% unless @guess %>
+						<td class="text-center" colspan="1"></td>
+					<% else %>
+						<td class="text-center"> <%= hit_or_miss(@guess.status) %></td>
+					<% end %>
 				<% end %>				
 			</tr>
 		<% end %>
