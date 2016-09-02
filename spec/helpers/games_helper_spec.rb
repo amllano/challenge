@@ -11,7 +11,7 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe GamesHelper, :type => :helper do
-  describe "#find_ship" do
+  	describe "#find_ship" do
 		it "returns ship given coordinates" do
 			fleet = [
 			 Ship.create(:name => "Aircraft carrier", :origin_x=> 1, :origin_y => 1, :size => 5, :orientation => 'horizontal'),
@@ -33,4 +33,8 @@ RSpec.describe GamesHelper, :type => :helper do
 			expect(helper.find_ship(5, 8, fleet)).to eql(nil)
 		end
 	end	
+
+	describe "#ship_name_bg_class" do
+		 pending "Returns bootstrap class depending on the ship name #{__FILE__}"
+	end
 end
