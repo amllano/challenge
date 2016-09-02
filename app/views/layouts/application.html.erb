@@ -9,7 +9,7 @@
   </head>
 
   <body>
-  	<div class="container <%= controller_name %> <%= action_name %>">
+  	<div class="container <%= controller_name %> <%= action_name %>"  <%= "data-game_id=#{params[:id]}" if params.has_key?(:id) %>>
     <%= yield %>
     </div>
   </body>
